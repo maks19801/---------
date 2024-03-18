@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import (
        QApplication, QWidget,
        QTableWidget, QListWidget, QListWidgetItem,
@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import (
        QHBoxLayout, QVBoxLayout,
        QGroupBox, QButtonGroup, QRadioButton, 
        QPushButton, QLabel, QSpinBox)
+from memo_data import Question
+
 app = QApplication([])
 btn_menu = QPushButton('Меню')
 btn_sleep = QPushButton('Відпочити')
@@ -44,7 +46,7 @@ layout_h.addLayout(layout_v2)
 
 radio_group_box.setLayout(layout_h)
 
-answer_group_box = QGroupBox('Результат тесту')
+answer_group_box = QGroupBox('Відповідь на питання')
 lbl_corect = QLabel('')
 lbl_answer = QLabel('')
 
@@ -53,6 +55,18 @@ layout_result.addWidget(lbl_corect, alignment=(Qt.AlignLeft | Qt.AlignTop))
 layout_result.addWidget(lbl_answer, alignment= Qt.AlignHCenter, stretch=2)
 answer_group_box.setLayout(layout_result)
 answer_group_box.hide()
+
+result_group_box = QGroupBox('Результат тесту')
+lbl_test_result_asked = QLabel('')
+lbl_test_result_right = QLabel('')
+
+layout_test_result = QVBoxLayout()
+layout_test_result.addWidget(QLabel('Заданих питань'))
+layout_test_result.addWidget(lbl_test_result_asked, alignment=(Qt.AlignLeft | Qt.AlignTop))
+layout_test_result.addWidget(QLabel('Правильних відповідей'))
+layout_test_result.addWidget(lbl_test_result_right)
+result_group_box.setLayout(layout_test_result)
+result_group_box.hide()
 
 layout_line1 = QHBoxLayout()
 layout_line2 = QHBoxLayout()
@@ -68,6 +82,7 @@ layout_line2.addWidget(lbl_question, alignment=(Qt.AlignHCenter | Qt.AlignVCente
 
 layout_line3.addWidget(radio_group_box)
 layout_line3.addWidget(answer_group_box)
+layout_line3.addWidget(result_group_box)
 
 
 layout_line4.addWidget(btn_answer, stretch=2)
@@ -81,19 +96,29 @@ layout_card.addLayout(layout_line4, stretch=1)
 layout_card.addStretch(1)
 layout_card.setSpacing(5)
 
-def show_result():
+def show_answer():
   radio_group_box.hide()
   answer_group_box.show()
   btn_answer.setText('Наступне питання')
 
 def show_question():
-  radio_group_box.show()
   answer_group_box.hide()
+  radio_group_box.show()
   btn_answer.setText('Відповісти')
-  
+
   radio_group.setExclusive(False) 
   rbtn_1.setChecked(False)
   rbtn_2.setChecked(False)
   rbtn_3.setChecked(False)
   rbtn_4.setChecked(False)
   radio_group.setExclusive(True)
+  
+
+def show_test_result():
+  answer_group_box.hide()
+  result_group_box.show()
+  lbl_question.hide()
+  btn_answer.hide()
+  
+
+

@@ -25,7 +25,7 @@ layout_form.addRow('І ще одна неправильна відповідь:'
 list_view = QListWidget()
 
 btn_new_question = QPushButton('Нове питання')
-btn_edit_question = QPushButton('Редагувати питання')
+btn_delete_question = QPushButton('Видалити питання')
 btn_start_training = QPushButton('Почати тренування')
 
 layout_line1 = QHBoxLayout()
@@ -36,7 +36,7 @@ layout_line1.addWidget(list_view)
 layout_line1.addLayout(layout_form)
 
 layout_line2.addWidget(btn_new_question)
-layout_line2.addWidget(btn_edit_question)
+layout_line2.addWidget(btn_delete_question)
 
 layout_line3.addWidget(btn_start_training)
 
