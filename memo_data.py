@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt
 from memo_main_layout import *
 from memo_edit_layout import *
@@ -100,12 +101,13 @@ class QuestionListModel():
 
     def add_question(self):
         new_question = Question(txt_question.text(),txt_answer.text(), txt_wrong_answer1.text(), txt_wrong_answer2.text(), txt_wrong_answer3.text())
-        self.form_list.append(new_question)
-        txt_question.clear()
-        txt_answer.clear()
-        txt_wrong_answer1.clear()
-        txt_wrong_answer2.clear()
-        txt_wrong_answer3.clear()
+        if new_question.question != '':
+            self.form_list.append(new_question)
+            txt_question.clear()
+            txt_answer.clear()
+            txt_wrong_answer1.clear()
+            txt_wrong_answer2.clear()
+            txt_wrong_answer3.clear()
 
     def delete_question(self):
         chosen = list_view.currentItem().text()

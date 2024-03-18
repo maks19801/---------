@@ -14,7 +14,7 @@ btn_sleep = QPushButton('Відпочити')
 btn_answer = QPushButton('Відповісти')
 
 box_minutes = QSpinBox()
-box_minutes.setValue(5)
+box_minutes.setValue(1)
 
 lbl_question = QLabel('')
 
