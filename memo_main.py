@@ -30,6 +30,8 @@ def start_training():
 def show_menu():
   question_win.hide()
   main_win.show()
+  questions_listmodel.asked_questions_list.clear()
+
   
 def show_question_in_form():
   chosen = list_view.currentItem().text()

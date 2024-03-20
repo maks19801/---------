@@ -38,15 +38,7 @@ class QuestionView(Question):
         super().__init__(question, answer, wrong_answer1, wrong_answer2, wrong_answer3)
         
         self.frm_model = frm_model  # может получить и None - ничего страшного не случится, 
-                                    # но для метода show нужно будет предварительно обновить данные методом change
-        self.question = question
-        self.answer = answer
-        self.wrong_answer1 = wrong_answer1
-        self.wrong_answer2 = wrong_answer2
-        self.wrong_answer3 = wrong_answer3  
-    def change(self, frm_model):
-        ''' обновление данных, уже связанных с интерфейсом '''
-        self.frm_model = frm_model
+                                    # но для метода show нужно будет предварительно обновить данные методом change 
     def show(self):
         ''' выводит на экран все данные из объекта '''
         self.frm_model.lbl_question.setText(self.question)
