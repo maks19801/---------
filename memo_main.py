@@ -61,7 +61,8 @@ def show_random_question():
 def click_Ok():
   if btn_answer.text() != 'Наступне питання':
     answer_check.check()
-    show_answer()
+    if frm_model.rbtn_1.isChecked() or frm_model.rbtn_2.isChecked() or frm_model.rbtn_3.isChecked() or frm_model.rbtn_4.isChecked():
+      show_answer()
   else:
     if len(questions_listmodel.asked_questions_list) == len(questions_listmodel.form_list):
       show_test_result()
